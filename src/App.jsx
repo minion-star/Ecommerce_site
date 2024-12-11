@@ -1,26 +1,26 @@
-import { useState } from 'react'
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Footer from './components/Footer'
+import Sidebar from './components/Sidebar'
+import ProductDetails from './pages/ProductDetails'
+import Header from './components/Header'
 
-
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
 
   return (
-    <>
-      <h1 className='underline text-3xl'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className='overflow-hidden'>
+      <Router>
+        <Header/>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/product/:id' element={<ProductDetails />}/>
+        </Routes>
+        <Sidebar/>
+        <Footer/>
+      </Router>
+    </div>
+  );
 }
 
 export default App
